@@ -2,23 +2,49 @@
 {
     class Book
     {
-        string Title;
-        string Author;
-        string ISBN;
+        private string title; // private field
+        private string author;// private field
+        private string isbn; // private field
 
-        public Book(string bookTitle, string bookAuthor, string bookISBN)
+        // Title property allows access
+        // to the title private field
+        public string Title
         {
-            this.Title = bookTitle;
-            this.Author = bookAuthor;
-            this.ISBN = bookISBN;
+            get { return title; }  // get method
+            set { title = value; } // set method
+        }
+        public string Author
+        {
+            get { return author; }
+            set
+            {
+                // Checks if any character in the incoming string is a digit
+                if (!value.Any(char.IsDigit))
+                {
+                    author = value;
+                }
+                else
+                {
+                    Console.WriteLine("Error: Author name cannot contain numbers.");
+                }
+            }
         }
 
-        public void DisplayInfo()
+        public string ISBN
         {
-            Console.WriteLine($"Book title: {Title}");
-            Console.WriteLine($"Book Author: {Author}");
-            Console.WriteLine($"Book ISBN: {ISBN}");
-            Console.WriteLine();
+            get { return isbn; }
+            set
+            {
+                // Checks that the incoming string is not blank
+                if (value != "")
+                {
+                    isbn = value;
+                }
+                else
+                {
+                    Console.WriteLine("Error: ISBN cannot be blank.");
+                }
+            }
         }
     }
 }
